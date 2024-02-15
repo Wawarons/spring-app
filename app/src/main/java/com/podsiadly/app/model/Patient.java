@@ -15,7 +15,7 @@ public class Patient {
   private long id;
   private String name;
   private String email;
-  private String pNo;
+  private String pno;
   private String gender;
 
   public long getId() {
@@ -42,12 +42,12 @@ public class Patient {
     this.email = email;
   }
 
-  public String getPNo() {
-    return pNo;
+  public String getPno() {
+    return pno;
   }
 
-  public void setPNo(String pNo) {
-    this.pNo = pNo;
+  public void setPno(String pno) {
+    this.pno = pno;
   }
 
   public String getGender() {
