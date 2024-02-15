@@ -47,8 +47,54 @@
                 patter="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                 class="form-control"
                 placeholder="123-45-789"
-                v-model="patient.email"
+                v-model="patient.pno"
                 required
+              />
+            </div>
+          </div>
+
+          <!-- gender -->
+          <label for="gender" class="form-label">Gender</label>
+          <div class="form-check">
+            <input
+              type="radio"
+              name="gender"
+              id="female"
+              value="female"
+              v-model="patient.gender"
+              required
+            />
+            <label for="female" class="form-check-label">Female</label>
+          </div>
+          <div class="form-check">
+            <input
+              type="radio"
+              name="gender"
+              id="male"
+              value="male"
+              v-model="patient.gender"
+              required
+            />
+            <label for="male" class="form-check-label">Male</label>
+          </div>
+          <div class="form-check">
+            <input
+              type="radio"
+              name="gender"
+              id="others"
+              value="others"
+              v-model="patient.gender"
+              required
+            />
+            <label for="others" class="form-check-label">Others</label>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <input
+                type="submit"
+                value="Submit"
+                class="btn btn primary w-100"
               />
             </div>
           </div>
@@ -58,36 +104,37 @@
   </main>
 </template>
 <script>
+import NavBar from "../components/NavBar.vue";
+
 export default {
-  name: 'AddPatient',
+  name: "AddPatient",
   components: {
-    NavBar
+    NavBar,
   },
 
   data() {
     return {
       patient: {
-        name: '',
-        email: '',
-        gender: '',
-        pno,
-      }
+        name: "",
+        email: "",
+        gender: "",
+        pno: "",
+      },
+    };
+  },
+  methods: {
+    addPatient() {
+      fetch("http://localhost:8080/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(this.patient),
+      }).then((data) => {
+        console.log(data);
+        this.$router.push("/");
+      });
     },
-    methods: {
-      addPatient() {
-        fetch('http://localhost:8080/add', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(this.patient)
-        })
-          .then(data => {
-            console.log(data);
-            this.router.push("/")
-          })
-      }
-    }
-  }
-}
+  },
+};
 </script>

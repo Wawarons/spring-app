@@ -3,6 +3,7 @@ package com.podsiadly.app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.podsiadly.app.model.Patient;
 import com.podsiadly.app.service.PatientService;
 
+@CrossOrigin("http://localhost")
 @RestController
 public class ClientController {
   // Service
@@ -26,6 +28,7 @@ public class ClientController {
   }
 
   // add new patient
+  @CrossOrigin("http://localhost:5173")
   @PostMapping(path = "/add")
   public String addPatient(@RequestBody Patient patient) {
     patientService.addPatient(patient);

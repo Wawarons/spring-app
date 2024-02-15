@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-md-12">
           <h1 class="text-center">View Patients</h1>
-          <a href="/add">Add patients</a>
+          <a href="/add" class="btn btn-primary">Add patients</a>
           <table class="table table-stripped">
             <thead>
               <tr>
@@ -36,7 +36,7 @@
                     @click="($event) => deletePatient(patient.id)"
                   >
                     Delete
-                  /button>
+                  </button>
                 </td>
               </tr>
             </tbody>
@@ -49,9 +49,11 @@
 
 <script>
 import NavBar from "../components/NavBar.vue";
+import { onBeforeMount } from "vue";
+
 export default {
   components: {
-    Navbar,
+    NavBar,
   },
 
   data() {
@@ -78,6 +80,10 @@ export default {
         this.getPatients();
       });
     },
+  },
+
+  onBeforeMount() {
+    getPatient();
   },
 };
 </script>
